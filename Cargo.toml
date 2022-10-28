@@ -1,0 +1,24 @@
+[package]
+name = "substreams-ethereum-address-created-count"
+version = "1.0.0"
+description = "Substreams for Ethereum to get a count of addresses created so far at given block"
+edition = "2021"
+repository = "https://github.com/streamingfast/substreams-ethereum-address-created-count"
+
+[lib]
+name = "substreams"
+crate-type = ["cdylib"]
+
+[dependencies]
+prost = "0.11.0"
+substreams = "0.3.1"
+substreams-ethereum = "0.6.1"
+
+# Required so that ethabi > ethereum-types build correctly under wasm32-unknown-unknown
+[target.wasm32-unknown-unknown.dependencies]
+getrandom = { version = "0.2", features = ["custom"] }
+
+[profile.release]
+lto = true
+opt-level = 's'
+strip = "debuginfo"

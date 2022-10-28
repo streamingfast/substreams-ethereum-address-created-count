@@ -1,0 +1,17 @@
+specVersion: v0.1.0
+package:
+  name: "substreams_ethereum_address_created_count"
+  version: v1.0.0
+
+binaries:
+  default:
+    type: wasm/rust-v1
+    file: ./target/wasm32-unknown-unknown/release/substreams.wasm
+
+modules:
+  - name: store_address_created
+    kind: store
+    updatePolicy: add
+    valueType: int64
+    inputs:
+      - source: sf.ethereum.type.v2.Block
